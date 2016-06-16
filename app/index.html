@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cool Project</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+  <body ng-app="app">
+    <div class="container">
+
+      <h1 class="title">Sample Firebase Sockets App</h1>
+
+      <hr>
+
+      <!-- First Controller -->
+      <div class="columns">
+        <div class="column" ng-controller="FirstController as vm">
+          <h2 class="subtitle">First Controller</h2>
+          <form ng-submit="vm.addThing(thing)">
+            <div class="control">
+              <input class="input" type="text" ng-model="thing.x" placeholder="Thing X">
+            </div>
+            <div class="control">
+              <input class="input" type="text" ng-model="thing.y" placeholder="Thing Y">
+            </div>
+            <button class="button is-black">Add</button>
+          </form>
+        </div>
+      </div>
+
+      <hr>
+
+      <!-- Second & Third Controllers -->
+      <div class="columns">
+        <div class="column" ng-controller="SecondController as vm">
+          <article class="message">
+            <div class="message-header">Second Controller</div>
+            <div class="message-body">
+              <div class="notification is-info" ng-repeat="thing in vm.things2">
+                <button class="delete" ng-click="vm.delete2(thing)"></button>
+                {{ thing.x }} - {{ thing.y }}
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="column" ng-controller="ThirdController as vm">
+          <article class="message">
+            <div class="message-header">Third Controller</div>
+            <div class="message-body">
+              <div class="notification is-success" ng-repeat="thing in vm.things3">
+                <button class="delete" ng-click="vm.delete3(thing)"></button>
+                {{ thing.x }} - {{ thing.y }}
+              </div>
+            </div>
+          </article>
+        </div>
+
+      </div>
+    </div>
+
+		<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+		<script>
+			// Initialize Firebase
+			var config = {
+				apiKey: "AIzaSyBSC9c2zyuEfZonPPyjifLGoSZbW1dGtJ0",
+				authDomain: "socket-data.firebaseapp.com",
+				databaseURL: "https://socket-data.firebaseio.com",
+				storageBucket: "",
+			};
+			var fbApp = firebase.initializeApp(config);
+		</script>
+    
+    <script src="js/bundle.js"></script>
+  </body>
+</html>
